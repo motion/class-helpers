@@ -1,0 +1,19 @@
+{
+  "name": "motion-class-helpers",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib/index.js",
+  "babel": {
+    "presets": ["steelbrain"]
+  },
+  "scripts": {
+    "build": "rm -r lib; babel src --out-dir lib",
+    "watch": "npm run build -- --watch"
+  },
+  "author": "Motion <natewienert@gmail.com> (motion.io)",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.22.2",
+    "babel-preset-steelbrain": "^4.0.2"
+  }
+}
