@@ -103,6 +103,11 @@ const helpers = {
 }
 
 export function inherit(klass: Object, ...names: Array<string>): void {
+  if (!names.length) {
+    // DEFAULT helpers to inherit
+    names = ['addEvent', 'setTimeout', 'setInterval', 'ref']
+  }
+
   const methods = Object.keys(helpers)
     .filter(k => names.indexOf(k) > -1)
     .reduce((o, key) => ({ ...o, [key]: helpers[key] }), {})
@@ -119,3 +124,20 @@ export interface HelpfulClass {
 }
 
 export default helpers
+
+export const addSubscriptions = Klass => class Subscribable extends Klass {
+  constructor(...args) {
+    super(...args)
+    this.subscriptions = new CompositeDisposable()
+  }
+  componentWillUnmount() {
+    super.componentWillUnmount && super.componentWillUnmount()
+    this.subscriptions.dispose()
+  }
+}
+
+export const addHelpers = Klass => {
+  const Result = addSubscriptions(Klass)
+  inherit(Result, 'addEvent', 'setTimeout', 'setInterval', 'ref')
+  return Result
+}
