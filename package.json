@@ -4,7 +4,9 @@
   "description": "",
   "main": "lib/index.js",
   "babel": {
-    "presets": ["steelbrain"]
+    "presets": [
+      "steelbrain"
+    ]
   },
   "scripts": {
     "build": "rm -r lib; babel src --out-dir lib",
@@ -15,5 +17,10 @@
   "devDependencies": {
     "babel-cli": "^6.22.2",
     "babel-preset-steelbrain": "^4.0.2"
+  },
+  "dependencies": {
+    "disposable-event": "^1.0.3",
+    "object-path": "^0.11.3",
+    "sb-event-kit": "^3.0.0"
   }
 }
