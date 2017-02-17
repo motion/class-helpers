@@ -12,18 +12,14 @@ const originalSetInterval = typeof window !== 'undefined' ? window.setInterval :
 
 function _setTimeout(givenCallback: Function, duration: number): number {
   let subscription
-
   const callback = () => {
     if (subscription) subscription.dispose()
     givenCallback.call(this)
   }
-
   const timeoutId = originalSetTimeout(callback, duration)
-
   subscription = this.subscriptions.add(() => {
     clearTimeout(timeoutId)
   })
-
   return timeoutId
 }
 
