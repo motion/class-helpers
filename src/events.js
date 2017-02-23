@@ -37,10 +37,10 @@ function patchSubscribers(fn) {
     if (!this.subscriptions) {
       this.subscriptions = new CompositeDisposable()
       // dispose
-      const oComponentWillUnmount = this.componentWillUnmount.bind(this)
+      const oComponentWillUnmount = this.componentWillUnmount
       this.componentWillUnmount = function() {
         this.subscriptions.dispose()
-        oComponentWillUnmount && oComponentWillUnmount()
+        oComponentWillUnmount && oComponentWillUnmount.call(this, arguments)
       }
     }
     return fn.call(this, ...args)

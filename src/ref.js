@@ -23,7 +23,7 @@ function firstSegment(path: CursorPath): string {
 // give it a reference to an object path
 // it gives you helpers for get/set/...
 // also works nicely with mobx
-export function ref(path: CursorPath): Cursor {
+export default function ref(path: CursorPath): Cursor {
   const key = firstSegment(path)
 
   const get = () => {
