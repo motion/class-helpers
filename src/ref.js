@@ -2,7 +2,7 @@ import objectPath from 'object-path'
 // import { action } from 'mobx'
 
 // TODO make mobx-able
-const action = (id, fn) => fb
+const action = (id, fn) => fn
 
 export type CursorPath = String | Array<string>
 export type Cursor = {
